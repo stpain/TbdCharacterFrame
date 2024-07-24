@@ -1,0 +1,113 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+
+    <Frame name="TbdCharacterFrameRepDial" mixin="TbdCharacterFrameRepDialMixin" virtual="true">
+        <Size x="64" y="64"/>
+        <Layers>
+            <Layer level="ARTWORK" textureSubLevel="1">
+                <Texture parentKey="icon">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="8" y="-8"/>
+                        <Anchor point="BOTTOMRIGHT" x="-8" y="8"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+                <MaskTexture parentKey="mask" file="Interface/CHARACTERFRAME/TempPortraitAlphaMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="12" y="-12"/>
+                        <Anchor point="BOTTOMRIGHT" x="-12" y="12"/>
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+            </Layer>
+            <Layer level="ARTWORK" textureSubLevel="2">
+                <Texture parentKey="glass" file="Interface/AddOns/TbdCharacterFrame/Media/Reputation/rep-bar-gloss">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="7" y="-7"/>
+                        <Anchor point="BOTTOMRIGHT" x="-7" y="7"/>
+                    </Anchors>
+                    <TexCoords left="0.0" right="0.71875" top="0.0" bottom="0.71875"/>
+                </Texture>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Cooldown parentKey="cooldown" hideCountdownNumbers="true" reverse="true">
+                <SwipeTexture file="Interface/AddOns/TbdCharacterFrame/Media/Reputation/rep-bar">
+                    <Color r="1" g="1" b="1" a="1"/>
+                </SwipeTexture>
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="0" y="0"/>
+                    <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                </Anchors>
+                <Layers>
+                    <Layer level="BORDER">
+                        <Texture parentKey="border" file="Interface/AddOns/TbdCharacterFrame/Media/Reputation/rep-bar">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="0" y="0"/>
+                                <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                            </Anchors>
+                            <TexCoords left="0.3828125" right="0.7578125" top="0.0078125" bottom="0.7578125"/>
+                        </Texture>
+                    </Layer>
+                </Layers>
+            </Cooldown>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+
+    <Frame name="TbdCharacterFrameRepParent" mixin="TbdCharacterFrameRepParentMixin" virtual="true">
+
+        <Size x="150" y="150"/>
+
+        <Layers>
+            <Layer level="BACKGROUND" textureSubLevel="-1">
+                <Texture parentKey="background">
+                    <Color r="0.25" g="0.25" b="0.25" a="0.05"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="2" y="-2"/>
+                        <Anchor point="BOTTOMRIGHT" x="-2" y="2"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="standingLabel" inherits="GameFontNormal">
+                    <Color r="1" g="1" b="1" a="1"/>
+                    <Size y="30"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                        <Anchor point="TOPRIGHT" x="0" y="0"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="standingInfo" inherits="GameFontNormal">
+                    <Size y="30"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="0" y="0"/>
+                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame parentKey="repRing" inherits="TbdCharacterFrameRepDial">
+                <Size x="90" y="90"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="30" y="-30"/>
+                    <Anchor point="BOTTOMRIGHT" x="-30" y="30"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Frame>
+
+</Ui>

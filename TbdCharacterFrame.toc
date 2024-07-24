@@ -1,0 +1,35 @@
+## Interface: 40400
+## Author: TheBoringDad
+## Version: 7.43
+## Title: Tbd Character Frame
+## Notes: Character Frame Replacement
+## SavedVariables: TBD_CharacterFrame_Global
+## SavedVariablesPerCharacter: TBD_CharacterFrame_Character
+## Dependencies: TbdWidgets, Blizzard_ItemSocketingUI
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.lua
+Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.xml
+
+Callbacks.lua
+Constants.lua
+
+SavedVariables.lua
+
+Templates\StatsFrame.lua
+Templates\StatsFrame.xml
+
+Templates\ItemSocket.lua
+Templates\ItemSocket.xml
+
+Templates\InventoryItem.lua
+Templates\InventoryItem.xml
+
+Templates\Reputation.lua
+Templates\Reputation.xml
+
+Templates\Containers.lua
+Templates\Containers.xml
+
+TbdCharacterFrame.lua
+TbdCharacterFrame.xml

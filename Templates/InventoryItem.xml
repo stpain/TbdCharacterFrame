@@ -1,0 +1,269 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+
+    <Frame name="TbdCharacterFrameItemPortraitModelTemplate" virtual="true">
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture atlas="Garr_Plot_Frostfire_H_4">
+                    <Size x="30" y="30"/>
+                    <Anchors>
+                        <Anchor point="BOTTOM" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Frames>
+            <PlayerModel parentKey="model">
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="-20" y="20"/>
+                    <Anchor point="BOTTOMRIGHT" x="20" y="-20"/>
+                </Anchors>
+            </PlayerModel>
+        </Frames>
+    </Frame>
+
+
+    <Frame name="TbdCharacterFrameItemPortraitIcon" mixin="TbdCharacterFrameItemPortraitIconMixin" enableMouse="true" virtual="true">
+        <Animations>
+            <AnimationGroup parentKey="rotateWhirl" looping="REPEAT">
+                <Rotation parentKey="rotate" childKey="highlight"  duration="2.25" degrees="-360">
+                    <Origin point="CENTER" x="0" y="0"/>
+                </Rotation>
+            </AnimationGroup>
+        </Animations>
+        <Layers>
+
+            <!-- ChallengeMode-SpikeyStar-->
+
+            <Layer level="OVERLAY">
+                <!-- <Texture parentKey="border" file="Interface/AddOns/ModernTalents/Media/Talents/Talents.png"> -->
+                <!-- <Texture parentKey="border" atlas="Artifacts-ItemIconBorder"> -->
+                <Texture parentKey="border" atlas="Portrait-Frame">
+                    <!-- <TexCoords left="0.42822265625" right="0.48486328125" top="0.2744140625" bottom="0.3759765625"/> -->
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="-2"/>					
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="HIGHLIGHT">
+                <!-- <Texture parentKey="highlight" file="Interface/AddOns/ModernTalents/Media/Talents/Talents.png"> -->
+                <Texture parentKey="highlight" atlas="ArtifactsFX-Whirls" alpha="0.3">
+                    <!-- <TexCoords left="0.36865234375" right="0.42529296875" top="0.6884765625" bottom="0.7900390625"/> -->
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="0"/>					
+                    </Anchors>
+                </Texture>
+                <!-- <Texture parentKey="highlight2" atlas="AftLevelup-SoftCloud" alpha="0.3">
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="RIGHT" x="0" y="0"/>
+                    </Anchors>
+                </Texture> -->
+            </Layer>
+
+            <Layer level="BACKGROUND">
+				<Texture parentKey="iconBorder">
+                    <Color r="1" g="1" b="1"/>
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="0"/>					
+                    </Anchors>
+                </Texture>
+                <!-- <MaskTexture parentKey="iconBorderMask" file="Interface/AddOns/ModernTalents/Media/Talents/TalentsMaskNodeChoice.png" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE"> -->
+                <MaskTexture parentKey="iconBorderMask" file="Interface/CHARACTERFRAME/TempPortraitAlphaMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="0"/>                    
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="iconBorder"/>
+                    </MaskedTextures>
+                </MaskTexture>
+            </Layer>
+
+            <Layer level="ARTWORK">
+				<Texture parentKey="icon" atlas="Mobile-Enchanting">
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="0"/>					
+                    </Anchors>
+                </Texture>
+                <!-- <MaskTexture parentKey="iconMask" file="Interface/AddOns/ModernTalents/Media/Talents/TalentsMaskNodeChoice.png" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE"> -->
+                <MaskTexture parentKey="iconMask" file="Interface/CHARACTERFRAME/TempPortraitAlphaMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE">
+                    <Anchors>
+                        <Anchor point="CENTER" x="0" y="0"/>                    
+                    </Anchors>
+                    <MaskedTextures>
+                        <MaskedTexture childKey="icon"/>
+                    </MaskedTextures>
+                </MaskTexture>
+            </Layer>
+            <Layer level="ARTWORK" textureSubLevel="2">
+                <Texture parentKey="glass" file="Interface/AddOns/TbdCharacterFrame/Media/Reputation/rep-bar-gloss">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="0" y="0"/>
+                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                    </Anchors>
+                    <TexCoords left="0.0" right="0.71875" top="0.0" bottom="0.71875"/>
+                </Texture>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLeave>
+                <!-- GameTooltip_SetDefaultAnchor(TbdCharacterFrameTooltip, UIParent) -->
+            </OnLeave>
+        </Scripts>
+    </Frame>
+
+    <Button name="TbdCharacterFrameItemSlotTemplate_Left" mixin="TbdCharacterFrameItemSlotMixin" hyperlinksEnabled="true" enableMouse="true" virtual="true">
+        <Animations>
+            <AnimationGroup parentKey="fadeIn" setToFinalAlpha="true">
+                <Alpha parentKey="alphaIn" duration="0.22" fromAlpha="0" toAlpha="1"/>
+                <Alpha parentKey="socket1AlphaIn" childKey="socket1" duration="0.22" fromAlpha="0" toAlpha="1"/>
+                <Alpha parentKey="socket2AlphaIn" childKey="socket2" startDelay="0.06" duration="0.22" fromAlpha="0" toAlpha="1"/>
+                <Alpha parentKey="socket3AlphaIn" childKey="socket3" startDelay="0.14" duration="0.22" fromAlpha="0" toAlpha="1"/>
+
+                <Scale parentKey="lineGrowth" childKey="bottomLine"  duration="0.26" fromScaleX="0" toScaleX="1" fromScaleY="1" toScaleY="1">
+                    <Origin point="BOTTOMLEFT" x="21" y="-1"/>
+                </Scale>
+            </AnimationGroup>
+        </Animations>
+        <Frames>
+            <!-- <Frame parentKey="modelFrame" inherits="TbdCharacterFrameItemPortraitModelTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="0" y="0"/>
+                </Anchors>
+                <Size x="36" y="36"/>
+            </Frame> -->
+            <Frame parentKey="iconFrame" inherits="TbdCharacterFrameItemPortraitIcon">
+                <Anchors>
+                    <Anchor point="LEFT" x="0" y="0"/>
+                </Anchors>
+                <Size x="36" y="36"/>
+            </Frame>
+
+            <Button parentKey="flyout" inherits="TBDDropDownTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" x="0" y="0"/>
+                </Anchors>
+                <Size x="36" y="36"/>
+            </Button>
+
+            <Button parentKey="socket1" inherits="TbdCharacterFrameItemSocketButtonTemplate" hidden="true" id="1">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" x="90" y="4"/>
+                </Anchors>
+                <Size x="14" y="14"/>
+            </Button>
+            <Button parentKey="socket2" inherits="TbdCharacterFrameItemSocketButtonTemplate" hidden="true" id="2">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" x="115" y="4"/>
+                </Anchors>
+                <Size x="14" y="14"/>
+            </Button>
+            <Button parentKey="socket3" inherits="TbdCharacterFrameItemSocketButtonTemplate" hidden="true" id="3">
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" x="140" y="4"/>
+                </Anchors>
+                <Size x="14" y="14"/>
+            </Button>
+
+        </Frames>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Line parentKey="bottomLine" thickness="3">
+                    <Color r="1" g="1" b="1"/>
+                    <StartAnchor relativePoint="BOTTOMLEFT" x="21" y="-1"/>
+                    <EndAnchor relativePoint="BOTTOMRIGHT" x="0" y="-1"/>
+                </Line>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="link" inherits="GameFontNormal" justifyH="LEFT" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="44" y="4"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="ilvl" inherits="GameFontWhite" justifyH="LEFT" justifyV="BOTTOM">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" x="44" y="4"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Button>
+
+    <Button name="TbdCharacterFrameItemSlotTemplate_Right" mixin="TbdCharacterFrameItemSlotMixin" hyperlinksEnabled="true" enableMouse="true" virtual="true">
+        <Animations>
+            <AnimationGroup parentKey="fadeIn" setToFinalAlpha="true">
+                <Alpha parentKey="alphaIn" duration="0.22" fromAlpha="0" toAlpha="1"/>
+                <Alpha parentKey="socket1AlphaIn" childKey="socket1" duration="0.22" fromAlpha="0" toAlpha="1"/>
+                <Alpha parentKey="socket2AlphaIn" childKey="socket2" startDelay="0.06" duration="0.22" fromAlpha="0" toAlpha="1"/>
+                <Alpha parentKey="socket3AlphaIn" childKey="socket3" startDelay="0.14" duration="0.22" fromAlpha="0" toAlpha="1"/>
+
+                <Scale parentKey="lineGrowth" childKey="bottomLine" duration="0.26" fromScaleX="0" toScaleX="1" fromScaleY="1" toScaleY="1">
+                    <Origin point="BOTTOMRIGHT" x="-21" y="-1"/>
+                </Scale>
+            </AnimationGroup>
+        </Animations>
+        <Frames>
+            <Frame parentKey="iconFrame" inherits="TbdCharacterFrameItemPortraitIcon">
+                <Anchors>
+                    <Anchor point="RIGHT" x="0" y="0"/>
+                </Anchors>
+                <Size x="36" y="36"/>
+            </Frame>
+
+            <Button parentKey="flyout" inherits="TBDDropDownTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" x="0" y="0"/>
+                </Anchors>
+                <Size x="36" y="36"/>
+            </Button>
+            
+            <Button parentKey="socket1" inherits="TbdCharacterFrameItemSocketButtonTemplate" hidden="true" id="1">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-90" y="4"/>
+                </Anchors>
+                <Size x="14" y="14"/>
+            </Button>
+            <Button parentKey="socket2" inherits="TbdCharacterFrameItemSocketButtonTemplate" hidden="true" id="2">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-115" y="4"/>
+                </Anchors>
+                <Size x="14" y="14"/>
+            </Button>
+            <Button parentKey="socket3" inherits="TbdCharacterFrameItemSocketButtonTemplate" hidden="true" id="3">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" x="-140" y="4"/>
+                </Anchors>
+                <Size x="14" y="14"/>
+            </Button>
+
+        </Frames>
+        <Layers>
+            <Layer level="ARTWORK">
+                <Line parentKey="bottomLine" thickness="3">
+                    <Color r="1" g="1" b="1"/>
+                    <StartAnchor relativePoint="BOTTOMLEFT" x="0" y="-1"/>
+                    <EndAnchor relativePoint="BOTTOMRIGHT" x="-21" y="-1"/>
+                </Line>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="link" inherits="GameFontNormal" justifyH="RIGHT" justifyV="TOP">
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" x="-44" y="4"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="ilvl" inherits="GameFontWhite" justifyH="RIGHT" justifyV="BOTTOM">
+                    <Anchors>
+                        <Anchor point="BOTTOMRIGHT" x="-44" y="4"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+    </Button>
+
+
+</Ui>

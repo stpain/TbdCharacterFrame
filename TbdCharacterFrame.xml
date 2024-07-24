@@ -1,0 +1,179 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+
+    <GameTooltip name="TbdCharacterFrameTooltip" parent="UIParent" inherits="SharedTooltipTemplate" mixin="TbdCharacterFrameTooltipMixin">
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+        </Scripts>
+        <Animations>
+            <AnimationGroup parentKey="fadeIn" setToFinalAlpha="true">
+                <Alpha parentKey="alphaIn" duration="0.3" fromAlpha="0" toAlpha="1"/>
+            </AnimationGroup>
+            <AnimationGroup parentKey="fadeOut" setToFinalAlpha="true">
+                <Alpha parentKey="alphaOut" duration="0.2" fromAlpha="1" toAlpha="0"/>
+            </AnimationGroup>
+        </Animations>
+    </GameTooltip>
+
+
+
+    <Frame name="TbdCharacterFrameParent" mixin="TbdCharacterFrameMixin" parent="UIParent" frameStrata="HIGH" enableMouse="true" movable="true">
+
+        <Size x="1200" y="700"/>
+        <Anchors>
+            <Anchor point="CENTER"/>
+        </Anchors>
+
+        <Layers>
+            <Layer level="BACKGROUND" textureSubLevel="-4">
+                <Texture parentKey="backgroundBlocker">
+                    <Color r="0" g="0" b="0"/>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="background" alpha="0.30">
+
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK" textureSubLevel="-1">
+                <Line parentKey="classIconLine" thickness="6">
+                    <Color r="1" g="1" b="1"/>
+                    <StartAnchor relativePoint="TOPLEFT" x="35" y="-70"/>
+                    <EndAnchor relativePoint="TOPLEFT" x="570" y="-70"/>
+                </Line>
+            </Layer>
+            <Layer level="ARTWORK" textureSubLevel="1">
+                <Texture parentKey="classIcon" atlas="ClassTrial-Druid-Ring">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="-40" y="40"/>
+                    </Anchors>
+                    <Size x="140" y="140"/>
+                    <!-- <Size x="180" y="151"/> -->
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <FontString parentKey="name" inherits="SplashHeaderFont">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="100" y="-12"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="ilvl" inherits="GameFontNormalLarge">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.name" relativePoint="BOTTOMLEFT" x="0" y="-6"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+
+        <Frames>
+
+            <Button parentKey="close" inherits="UIPanelCloseButton">
+                <Anchors>
+                    <Anchor point="TOPRIGHT" x="-1" y="-1"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        HideUIPanel(self:GetParent())
+                    </OnClick>
+                </Scripts>
+            </Button>
+
+            <ModelScene parentKey="characterModelScene" name="TbdCharacterModelScene" mixin="CharacterModelSceneMixin" inherits="PanningModelSceneMixinTemplate">
+				<Size x="310"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="0" y="-100"/>
+					<Anchor point="BOTTOMLEFT" x="0" y="50"/>
+				</Anchors>
+                <Frames>
+					<Frame parentKey="controlFrame" inherits="ModelSceneControlFrameTemplate" >
+						<Anchors>
+							<Anchor point="TOP" x="0" y="-10"/>
+						</Anchors>
+					</Frame>
+				</Frames>
+
+				<Scripts>
+					<OnMouseUp method="OnMouseUp"/>
+					<OnReceiveDrag method="OnReceiveDrag"/>
+				</Scripts>
+            </ModelScene>
+
+            <Frame parentKey="statsParent">
+                <Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.characterModelScene" relativePoint="TOPRIGHT" x="0" y="0"/>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent.characterModelScene" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+				</Anchors>
+                <Size x="250"/>
+
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <!-- <Texture setAllPoints="true">
+                            <Color r="0.2" g="0.2" b="0.2" a="0.1"/>
+                        </Texture> -->
+                    </Layer>
+                </Layers>
+
+                <Frames>
+                    <Frame parentKey="treeview" inherits="TBDTreeviewTemplate">
+                        <Size x="230"/>
+                        <Anchors>
+                            <Anchor point="TOP" x="0" y="0"/>
+                            <Anchor point="BOTTOM" x="0" y="0"/>
+                        </Anchors>
+                        <KeyValues>
+                            <KeyValue key="itemTemplate" value="TbdCharacterFrameStatsFrameTemplate" type="string"/>
+                            <KeyValue key="elementHeight" value="24" type="number"/>
+                        </KeyValues>
+                    </Frame>
+                </Frames>
+
+            </Frame>
+
+            <Frame parentKey="tabContainer" inherits="TBDTabFrameTemplate">
+                <Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.statsParent" relativePoint="TOPRIGHT" x="25" y="0"/>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent.statsParent" relativePoint="BOTTOMRIGHT" x="25" y="0"/>
+					<Anchor point="BOTTOMRIGHT" x="-60" y="40"/>
+				</Anchors>
+
+                <Frames>
+                    <Frame parentKey="equipment" setAllPoints="true" hidden="true">
+
+                    </Frame>
+                    <Frame parentKey="reputations" setAllPoints="true" hidden="true">
+                        <Frames>
+                            <Button parentKey="factionDropdownMenu" inherits="TBDDropDownTemplate">
+                                <Anchors>
+                                    <Anchor point="TOPRIGHT" x="0" y="0"/>
+                                </Anchors>
+                                <Size x="180" y="40"/>
+                            </Button>
+                            <ScrollFrame parentKey="gridview" inherits="TBDGridviewTemplate">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" x="0" y="-40"/>
+                                    <Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+                                </Anchors>
+                            </ScrollFrame>
+                        </Frames>
+                    </Frame>
+                    <Frame parentKey="containers" setAllPoints="true" hidden="true">
+
+                    </Frame>
+                </Frames>
+            </Frame>
+
+        </Frames>
+
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnShow method="OnShow"/>
+            <OnDragStart>
+                self:StartMoving()
+            </OnDragStart>
+            <OnDragStop>
+                self:StopMovingOrSizing()
+            </OnDragStop>
+        </Scripts>
+    </Frame>
+
+</Ui>

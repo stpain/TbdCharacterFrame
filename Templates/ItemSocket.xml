@@ -1,0 +1,96 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+
+    <Frame name="SocketFlyoutItemTemplate" mixin="SocketFlyoutItemMixin" enableMouse="true" virtual="true">
+        <Size x="200" y="32"/>
+        <HitRectInsets left="-5" right="-5" top="-5" bottom="-5"/>
+        <Animations>
+            <AnimationGroup parentKey="fadeIn" setToFinalAlpha="true">
+                <Alpha parentKey="alphaIn" duration="0.22" fromAlpha="0" toAlpha="1"/>
+            </AnimationGroup>
+        </Animations>
+        <Layers>
+            <Layer level="HIGHLIGHT">
+                <Texture parentKey="leftArrowHighlight" atlas="NPE_ArrowLeft">
+                    <Size x="32" y="32"/>
+                    <Anchors>
+                        <Anchor point="RIGHT" relativePoint="LEFT" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="leftArrowHighlight" atlas="NPE_ArrowRight">
+                    <Size x="32" y="32"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativePoint="RIGHT" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND" textureSubLevel="-1">
+                <Texture parentKey="background" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="1"/>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="gemIcon">
+                    <Size x="24" y="24"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="4" y="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="OVERLAY">
+                <Texture parentKey="gemIconBorder" atlas="transmog-frame-selected">
+                    <Size x="30" y="30"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+
+                <FontString parentKey="link" inherits="GameFontWhite">
+                    <Size x="160" y="32"/>
+                    <Anchors>
+                        <Anchor point="LEFT" x="34" y="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+        </Scripts>
+    </Frame>
+
+    <Button name="TbdCharacterFrameItemSocketButtonTemplate" mixin="TbdCharacterFrameItemSocketButtonMixin" enableMouse="true" registerForClicks="anyUp,anyDown" virtual="true">
+        <NormalTexture atlas="auctionhouse-icon-socket"/>
+        <HighlightTexture atlas="transmog-frame-pink">
+            <Anchors>
+                <Anchor point="TOPLEFT" x="-4" y="4"/>
+                <Anchor point="BOTTOMRIGHT" x="4" y="-4"/>
+            </Anchors>
+        </HighlightTexture>
+        <Size x="14" y="14"/>
+        <!-- <HitRectInsets left="-3" right="3" top="3" bottom="-3"/> -->
+        <Frames>
+            <Frame parentKey="flyout">
+                <Anchors>
+                    <Anchor point="TOP" relativePoint="BOTTOM" x="-1" y="1"/>
+                </Anchors>
+                <Animations>
+                    <AnimationGroup parentKey="fadeOut" setToFinalAlpha="false">
+                        <Alpha parentKey="alphaOut" duration="0.2" fromAlpha="1" toAlpha="0"/>
+                    </AnimationGroup>
+                </Animations>
+            </Frame>
+        </Frames>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+			<OnEvent>
+				ItemSocketingSocketButton_OnEvent(self, event, ...);
+			</OnEvent>
+			<OnClick method="OnClick"/>
+			<OnDragStart method="OnDragStart"/>
+			<OnReceiveDrag method="OnReceiveDrag"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+        </Scripts>
+    </Button>
+    
+</Ui>

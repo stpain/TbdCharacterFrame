@@ -1,0 +1,80 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ https://raw.githubusercontent.com/Meorawr/wow-ui-schema/main/UI.xsd">
+    
+    <Frame name="TbdCharacterFrameStatsFrameTemplate" mixin="TbdCharacterFrameStatsFrameMixin" virtual="true">
+        <Size x="100" y="20"/>
+        <Layers>
+            <Layer level="BACKGROUND" textureSubLevel="-1">
+                <Texture parentKey="border">
+                    <Color r="1" g="1" b="1" a="1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="0" y="0"/>					
+                        <Anchor point="BOTTOMRIGHT" x="0" y="0"/>					
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="BACKGROUND" textureSubLevel="0">
+                <Texture parentKey="fillBackground">
+                    <Color r="0" g="0" b="0" a="1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="1" y="-1"/>					
+                        <Anchor point="BOTTOMRIGHT" x="-1" y="1"/>					
+                    </Anchors>
+                </Texture>
+            </Layer>
+            <Layer level="ARTWORK">
+				<Texture parentKey="fill">
+                    <Color r="1" g="1" b="1" a="1"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="1" y="-1"/>
+                        <Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+                    </Anchors>
+                </Texture>
+
+
+				<Texture parentKey="parentLeft" atlas="Options_ListExpand_Left"> 
+                    <Size x="12"/>
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="1" y="-1"/>
+                        <Anchor point="BOTTOMLEFT" x="1" y="1"/>
+                    </Anchors>
+                </Texture>
+				<Texture parentKey="parentRight" atlas="Options_ListExpand_Right_Expanded">
+                    <Size x="28"/>
+                    <Anchors>
+                        <Anchor point="TOPRIGHT" x="-1" y="-1"/>					
+                        <Anchor point="BOTTOMRIGHT" x="-1" y="1"/>
+                    </Anchors>
+                </Texture>
+                <Texture parentKey="parentMiddle" atlas="_Options_ListExpand_Middle">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.parentLeft" relativePoint="TOPRIGHT" x="0" y="0"/>					
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent.parentLeft" relativePoint="BOTTOMRIGHT" x="0" y="0"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.parentRight" relativePoint="TOPLEFT" x="0" y="0"/>					
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.parentRight" relativePoint="BOTTOMLEFT" x="0" y="0"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+
+
+            <Layer level="OVERLAY">
+                <FontString parentKey="label" inherits="GameFontWhite">
+                    <Anchors>
+                        <Anchor point="LEFT" x="4" y="0"/>
+                    </Anchors>
+                </FontString>
+                <FontString parentKey="text" inherits="GameFontNormal">
+                    <Anchors>
+                        <Anchor point="RIGHT" x="-4" y="0"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+        <Scripts>
+            <OnLoad method="OnLoad"/>
+            <OnLeave method="OnLeave"/>
+        </Scripts>
+    </Frame>
+
+    
+</Ui>
